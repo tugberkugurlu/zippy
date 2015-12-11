@@ -1,5 +1,5 @@
 {
     "dependencies": {
-        "Microsoft.AspNet.Mvc": "6.0.0-beta6"
+        "Microsoft.AspNet.Mvc": "6.0.0-rc1-final"
     }
 }

@@ -1,22 +1,10 @@
 using System.Reflection;
-using Microsoft.Framework.Internal;
-using Microsoft.Framework.Runtime;
-using Microsoft.Framework.Runtime.Common.CommandLine;
-
+using Microsoft.Dnx.Runtime.Common.CommandLine;
 
 namespace Zippy
 {
     public class Program
     {
-        private readonly IRuntimeEnvironment _runtimeEnvironment;
-        private readonly IApplicationEnvironment _applicationEnvironment;
-
-        public Program([NotNull]IRuntimeEnvironment runtimeEnvironment, [NotNull]IApplicationEnvironment applicationEnvironment)
-        {
-            _runtimeEnvironment = runtimeEnvironment;
-            _applicationEnvironment = applicationEnvironment;
-        }
-
         public int Main(string[] args)
         {
             var app = new CommandLineApplication();
