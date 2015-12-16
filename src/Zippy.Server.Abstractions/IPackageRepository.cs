@@ -26,7 +26,7 @@ namespace Zippy.Server.Abstractions
         public IReadOnlyList<TItem> Items { get; }
     }
     
-    public interface IPackageRepository
+    public interface IPackageReadRepository
     {
         Task<IPackage> Get(PackageName name, SemanticVersion version);
         Task<IPackage> Exists(PackageName name, SemanticVersion version);
