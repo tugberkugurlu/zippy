@@ -8,6 +8,10 @@
         "net451": {
             "frameworkAssemblies": {
                 "System.Text.RegularExpressions": "4.0.0.0"
+            },
+            
+            "dependencies": {
+                "Pri.LongPath": "2.0.11"
             }
         },
         "dotnet5.4": {
