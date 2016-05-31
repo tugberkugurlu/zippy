@@ -27,7 +27,7 @@ func main() {
 				cli.StringFlag{
 					Name:  "outputFolder, o",
 					Usage: "Path to the output folder for the package to be installed",
-					Value: "./",
+					Value: "./", // os.Getwd()
 				},
 
 				cli.StringFlag{
