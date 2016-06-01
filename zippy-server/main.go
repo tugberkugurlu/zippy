@@ -12,9 +12,9 @@ import (
 )
 
 type packageModel struct {
-	Name      string
-	Version   string
-	CreatedOn time.Time
+	Name      string    `json:"name"`
+	Version   string    `json:"version"`
+	CreatedOn time.Time `json:"createdOn"`
 }
 
 type packages []packageModel
