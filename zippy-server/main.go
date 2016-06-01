@@ -34,9 +34,9 @@ func getPackages(w http.ResponseWriter, r *http.Request) {
 	lookupTerm := vars["lookupTerm"]
 
 	pkgs := packages{
-		packageModel{Name: "Foo", Version: "1.0.0"},
-		packageModel{Name: "Bar", Version: "1.0.0-beta.1"},
-		packageModel{Name: "FooBar", Version: "2.25.2"},
+		packageModel{Name: "Foo", Version: "1.0.0", CreatedOn: time.Now().Add(-10)},
+		packageModel{Name: "Bar", Version: "1.0.0-beta.1", CreatedOn: time.Now().Add(-200000)},
+		packageModel{Name: "FooBar", Version: "2.25.2", CreatedOn: time.Now().Add(-3000000000)},
 	}
 
 	fmt.Printf("Hello from getPackages. path: %q, lookupTerm: %q", html.EscapeString(r.URL.Path), lookupTerm)
