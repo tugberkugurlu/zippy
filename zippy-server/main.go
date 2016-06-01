@@ -1,13 +1,23 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"html"
 	"log"
 	"net/http"
+	"time"
 
 	"github.com/gorilla/mux"
 )
+
+type packageModel struct {
+	Name      string
+	Version   string
+	CreatedOn time.Time
+}
+
+type packages []packageModel
 
 func main() {
 	router := mux.NewRouter().StrictSlash(true)
@@ -22,7 +32,16 @@ func main() {
 func getPackages(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	lookupTerm := vars["lookupTerm"]
-	fmt.Fprintf(w, "Hello from getPackages. path: %q, lookupTerm: %q", html.EscapeString(r.URL.Path), lookupTerm)
+
+	pkgs := packages{
+		packageModel{Name: "Foo", Version: "1.0.0"},
+		packageModel{Name: "Bar", Version: "1.0.0-beta.1"},
+		packageModel{Name: "FooBar", Version: "2.25.2"},
+	}
+
+	fmt.Printf("Hello from getPackages. path: %q, lookupTerm: %q", html.EscapeString(r.URL.Path), lookupTerm)
+
+	json.NewEncoder(w).Encode(pkgs)
 }
 
 func getPackagesByPackageName(w http.ResponseWriter, r *http.Request) {
