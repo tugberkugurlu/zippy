@@ -11,10 +11,10 @@ import (
 
 func main() {
 	router := mux.NewRouter().StrictSlash(true)
-	router.HandleFunc("/packages", postPackage).Methods("POST")
-	router.HandleFunc("/packages", getPackages).Methods("GET").Queries("lookupTerm", "{lookupTerm}")
-	router.HandleFunc("/packages/{packageName}", getPackagesByPackageName).Methods("GET")
-	router.HandleFunc("/packages/{packageName}/{version}", getPackage).Methods("GET")
+	router.HandleFunc("/packages", postPackage).Methods(http.MethodPost)
+	router.HandleFunc("/packages", getPackages).Methods(http.MethodGet).Queries("lookupTerm", "{lookupTerm}")
+	router.HandleFunc("/packages/{packageName}", getPackagesByPackageName).Methods(http.MethodGet)
+	router.HandleFunc("/packages/{packageName}/{version}", getPackage).Methods(http.MethodGet)
 
 	log.Fatal(http.ListenAndServe(":8080", router))
 }
@@ -39,5 +39,6 @@ func getPackage(w http.ResponseWriter, r *http.Request) {
 }
 
 func postPackage(w http.ResponseWriter, r *http.Request) {
+	w.WriteHeader(http.StatusCreated)
 	fmt.Fprintf(w, "Hello from postPackage, %q", html.EscapeString(r.URL.Path))
 }
