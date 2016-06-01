@@ -36,6 +36,26 @@ func main() {
 				},
 			},
 		},
+
+		cli.Command{
+			Name:      "push",
+			Usage:     "Pushes the specified package to the specified source",
+			ArgsUsage: "[package-file-path]",
+			Flags: []cli.Flag{
+
+				// If the version is not specified, it will be be extrated from the package file.
+				// E.g. for my-foo.1.0.2-rc2.zip, 1.0.2-rc2 will be the version
+				cli.StringFlag{
+					Name:  "version, v",
+					Usage: "Version of the package to be pushed to the source along with the package",
+				},
+
+				cli.StringFlag{
+					Name:  "source, s",
+					Usage: "Base URL for the desired zippy endpoint to be looked at for this push operation",
+				},
+			},
+		},
 	}
 
 	app.Action = func(c *cli.Context) error {
