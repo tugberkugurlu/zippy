@@ -14,10 +14,10 @@ func main() {
 
 func createZippyRouter() *mux.Router {
 	router := mux.NewRouter().StrictSlash(true)
-	router.HandleFunc("/packages", postPackage).Methods(http.MethodPost)
-	router.HandleFunc("/packages", getPackages).Methods(http.MethodGet).Queries("lookupTerm", "{lookupTerm}")
-	router.HandleFunc("/packages/{packageName}", getPackagesByPackageName).Methods(http.MethodGet)
-	router.HandleFunc("/packages/{packageName}/{version}", getPackage).Methods(http.MethodGet)
+	router.Path("/packages").Methods(http.MethodPost).Handler(logger(postPackage, "postPackage"))
+	router.Path("/packages").Methods(http.MethodGet).Queries("lookupTerm", "{lookupTerm}").Handler(logger(getPackages, "getPackages"))
+	router.Path("/packages/{packageName}").Methods(http.MethodGet).Handler(logger(getPackagesByPackageName, "getPackagesByPackageName"))
+	router.Path("/packages/{packageName}/{version}").Methods(http.MethodGet).Handler(logger(getPackage, "getPackage"))
 
 	return router
 }
